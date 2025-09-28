@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PrescriptionApp.Models.Prescription>
+@{
+    ViewData["Title"] = "Prescriptions";
+    Layout = "_Layout";
+}
+
+<div class="card shadow-lg border-0 rounded-4 mt-4">
+    <div class="card-body">
+        <h2 class="text-center mb-4 text-gradient">Prescriptions</h2>
+        <div class="d-flex justify-content-end mb-3">
+            <a asp-controller="Prescription" asp-action="Create" class="btn btn-lg btn-gradient">+ Add Prescription</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Medication Name</th>
+                        <th>Fill Status</th>
+                        <th>Cost</th>
+                        <th>Request Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model)
+                    {
+                        <tr>
+                            <td>@p.MedicationName</td>
+                            <td><span class="badge bg-info">@p.FillStatus</span></td>
+                            <td class="fw-bold">@p.Cost.ToString("C")</td>
+                            <td>@p.RequestTime.ToString("MM/dd/yyyy HH:mm")</td>
+                            <td>
+                                <a asp-controller="Prescription" asp-action="Edit" asp-route-id="@p.PrescriptionId" asp-route-slug="@p.Slug" 
+                                   class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a asp-controller="Prescription" asp-action="Delete" asp-route-id="@p.PrescriptionId" asp-route-slug="@p.Slug" 
+                                   class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

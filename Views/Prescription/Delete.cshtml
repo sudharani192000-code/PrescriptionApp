@@ -1,0 +1,20 @@
+@model PrescriptionApp.Models.Prescription
+@{
+    ViewData["Title"] = "Delete Prescription";
+    Layout = "_Layout";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height:70vh;">
+    <div class="card shadow-lg p-4 rounded-4" style="max-width:600px; width:100%;">
+        <h2 class="text-center text-danger mb-4">⚠️ Delete Prescription</h2>
+        <p class="text-center">Are you sure you want to delete <strong>@Model.MedicationName</strong>?</p>
+
+        <form asp-action="DeleteConfirmed" method="post">
+            <input type="hidden" asp-for="PrescriptionId" />
+            <div class="d-flex justify-content-center gap-3">
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

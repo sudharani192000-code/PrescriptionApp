@@ -1,0 +1,30 @@
+body {
+    background: #f7f7f9;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Gradient text for titles */
+.text-gradient {
+    background: linear-gradient(90deg, #4635df, #6a47e9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+/* Gradient button */
+.btn-gradient {
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    border: none;
+    color: #fff !important;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+.btn-gradient:hover {
+    opacity: 0.9;
+}
+
+/* Card styling */
+.card {
+    border-radius: 20px;
+}

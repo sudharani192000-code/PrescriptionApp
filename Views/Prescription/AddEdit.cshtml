@@ -1,0 +1,52 @@
+@model PrescriptionApp.Models.Prescription
+@{
+    ViewData["Title"] = Model?.PrescriptionId == 0 ? "Add Prescription" : "Edit Prescription";
+    Layout = "_Layout";
+    var isNew = Model?.PrescriptionId == 0;
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height:70vh;">
+    <div class="card shadow-lg p-4 rounded-4" style="max-width:600px; width:100%;">
+        <h2 class="text-center mb-4 text-gradient">@(isNew ? "➕ Add New Prescription" : "✏️ Edit Prescription")</h2>
+
+        <form asp-action="@(isNew ? "Create" : "Edit")" asp-controller="Prescription" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <input type="hidden" asp-for="PrescriptionId" />
+
+            <div class="mb-3">
+                <label asp-for="MedicationName" class="form-label"></label>
+                <input asp-for="MedicationName" class="form-control" />
+                <span asp-validation-for="MedicationName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="FillStatus" class="form-label"></label>
+                <select asp-for="FillStatus" class="form-select" asp-items="ViewBag.FillStatus"></select>
+                <span asp-validation-for="FillStatus" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Cost" class="form-label"></label>
+                <input asp-for="Cost" class="form-control" />
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+
+            @if (!isNew)
+            {
+                <div class="mb-3">
+                    <label asp-for="RequestTime" class="form-label"></label>
+                    <input asp-for="RequestTime" class="form-control" readonly />
+                </div>
+            }
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-gradient btn-lg">@(isNew ? "Add Prescription" : "Save Changes")</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
